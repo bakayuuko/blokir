@@ -94,7 +94,7 @@ sort -u $HOME/project/blokir/domain.tmp > $HOME/project/blokir/deny.list
 rm -rf $HOME/project/blokir/domain.tmp
 echo "Applying allowlist"
 grep -Fvxf $HOME/project/blokir/allow.list $HOME/project/blokir/deny.list > domain.tmp
-sort -u $HOME/project/blokir/domain.tmp > $HOME/project/blokir/domain.txt
+sort -u $HOME/project/blokir/domain.tmp | sed -e 's/\#.*$//g' -e '/^[[:space:]]*$/d' -e '\~/~d' > $HOME/project/blokir/domain.txt
 rm -rf $HOME/project/blokir/domain.tmp
 # remove allow.list deny.list
 rm -rf $HOME/project/blokir/allow.list
